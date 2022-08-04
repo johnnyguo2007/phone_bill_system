@@ -1,0 +1,29 @@
+one file that contains a phone call record.
+the file looks like:
+date_time    caller_number   destination_number    duration_seconds
+
+Main objects:
+Customer
+
+phone calls
+
+domestic or international
+
+rates
+
+pricing plans/phone plans
+
+bill
+
+task is to generate bills
+Depending on the caller number you tell who made thed call and which pricing plan the caller is on.
+depending on the destination number you can tell if its international call or local call. Assumes that all caller
+numbers are within the U.S
+
+Bill will then generate per month based on the number of calls, amount of time per each call, and where they are calling to.
+
+###################################################################################################
+
+
+
+
