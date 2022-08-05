@@ -48,4 +48,4 @@ class BillingEngine:
                           + obj_call_plan.get_fixed_cost()
 
         # 5. generate bill
-        p
+
