@@ -6,50 +6,72 @@ import csv
 
 @dataclass
 class CallRecord:
-	@dataclass
-	class CallRecord:
-		data_time: datetime
-		caller_number: int
-		destination_number: int
-		duration_seconds: int
+    date_time: datetime
+    caller_number: int
+    destination_number: int
+    duration_seconds: int
 
-	# def __init__(self, date_time: datetime, caller_number: int, destination_number: int, duration_seconds: int):
-	#     """
-	#     This is a class represent one phone call record.
-	#     :param date_time:
-	#     :param caller_number:
-	#     :param destination_number:
-	#     :param duration_seconds:
-	#     """
+    def get_billing_month(self, date_time: datetime) -> int:
+        pass
+
+
+# def __init__(self, date_time: datetime, caller_number: int, destination_number: int, duration_seconds: int):
+#     """
+#     This is a class represent one phone call record.
+#     :param date_time:
+#     :param caller_number:
+#     :param destination_number:
+#     :param duration_seconds:
+#     """
+
+
 #     pass
 
 
 class CallRecords:
-	def __init__(self):
-		pass
+    def __init__(self):
+        self._data = []
 
-	def add_record(self, phone_record: CallRecord):
-		pass
+    def get_call_records(self) -> list[CallRecord]:
+        return self._data
 
-	def total_duration(self, call_type, duration_seconds):
-		"""
+    def __repr__(self):
+        str_records = ''
+        for record in self._data:
+            str_records += f"\n{str(record)}"
+        return str_records
+
+    def add_record(self, phone_record: CallRecord):
+        self._data.append(phone_record)
+
+    def total_duration(self, call_type, duration_seconds):
+        """
         Compute total duration for all of the call in this object
         :param call_type: is international or local call
         :return:
         """
-		pass
+        pass
 
+    def load_call_records_from_file(self, filename: str):
+        with open(filename) as f:
+            reader = csv.reader(f)
+            for row in reader:
+                print(row[2])
+                obj_cr = CallRecord()
+                # Todo: Convert the datetimes to integers
+                self.add_record(obj_cr)
 
-def load_file_to_call_records(filename: str):
-	with open(filename) as f:
-		reader = csv.reader(f)
-		for row in reader:
-			print(row[2])
-			cr = CallRecord()
-			print(cr)
-
-
-
+# import csv
+#
+# call_records = CallRecords()
+# with open(r'C:\Users\patri\PycharmProjects\phone_bill_system\call_records.csv') as f:
+#     reader = csv.reader(f)
+#     for row in reader:
+#         tp = tuple(row)
+#         obj_cr = CallRecord(*tp) #using wilecard to unpack the tuple
+#         call_records.add_record(obj_cr)
+#
+# print(call_records)
 
 # load_file_to_call_records('/Users/johnnyguo/PycharmProjects/phone_bill_system/call_records.csv')
 
