@@ -17,16 +17,16 @@ class Customer:
         str_customer = f'{self.name}\t{self.caller_number}\t{self.calling_plan}'
         return str_customer
 
-
-
-class CustomerDict(TypedDict):
-    name: str
-    customer: Customer
+#
+#
+# class CustomerDict(TypedDict):
+#     name: str
+#     customer: Customer
 
 
 class Customers:
     def __init__(self):
-        self._customer_dict: CustomerDict = {}
+        self._customer_dict: Dict[str, Customer] = {}
 
     def add_customer(self, one_customer: Customer):
         self._customer_dict[one_customer.name] = one_customer
@@ -57,18 +57,18 @@ class Customers:
         return str_customers
 
 
-def test_load_customers_from_file(file_path: str):
-    obj_customers = Customers()
-    with open(file_path) as f:
-        reader = csv.reader(f)
-        for row in reader:
-            tp = tuple(row)
-            obj_cm = Customer(*tp)
-            obj_customers.add_customer(obj_cm)
-    str_custs = repr(obj_customers)
-    print(str_custs)
-
-
-# path = '/Users/johnnyguo/PycharmProjects/phone_bill_system/Customers.csv'
-path = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\Customers.csv'
-test_load_customers_from_file(path)
+# def test_load_customers_from_file(file_path: str):
+#     obj_customers = Customers()
+#     with open(file_path) as f:
+#         reader = csv.reader(f)
+#         for row in reader:
+#             tp = tuple(row)
+#             obj_cm = Customer(*tp)
+#             obj_customers.add_customer(obj_cm)
+#     str_custs = repr(obj_customers)
+#     print(str_custs)
+#
+#
+# # path = '/Users/johnnyguo/PycharmProjects/phone_bill_system/Customers.csv'
+# path = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\Customers.csv'
+# test_load_customers_from_file(path)

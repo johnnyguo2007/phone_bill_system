@@ -11,9 +11,11 @@ class CallRecord:
     destination_number: int
     duration_seconds: int
 
-    def get_billing_month(self, date_time: datetime) -> int:
-        pass
-
+    def get_billing_year_month(self, date_time: datetime) -> int:
+        year: int = date_time.year
+        month:int = date_time.month
+        yyyymm = year * 100 + month
+        return yyyymm
 
 # def __init__(self, date_time: datetime, caller_number: int, destination_number: int, duration_seconds: int):
 #     """

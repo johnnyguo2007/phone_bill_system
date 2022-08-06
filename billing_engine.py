@@ -23,7 +23,7 @@ class BillingEngine:
         # 3.0 load phone call record
         obj_call_records = CallRecords()
         obj_call_records.load_call_records_from_file()
-        # All functions above implemented
+
 
         # 3. Go through each record in phone_records
         # 3.1 check if that record is within billing month
@@ -32,12 +32,13 @@ class BillingEngine:
         international_total_minutes = 0
         local_total_minutes = 0
         for record in obj_call_records.get_call_records():
-            if record.get_billing_month() == billing_month \
+            if record.get_billing_year_month() == billing_month \
                     and record.caller_number == obj_cust.caller_number:
                 if util.is_international(record):
                     international_total_minutes += record.duration_seconds / 60
                 else:
                     local_total_minutes += record.duration_seconds / 60
+        # All functions above implemented
 
         # 4. imply calling_plan and subtract allowance for both local and internatinal and mutiply rates respectivly
         local_total_minutes -= obj_call_plan.get_local_allowance()
