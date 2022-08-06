@@ -23,6 +23,7 @@ class BillingEngine:
         # 3.0 load phone call record
         obj_call_records = CallRecords()
         obj_call_records.load_call_records_from_file()
+        # All functions above implemented
 
         # 3. Go through each record in phone_records
         # 3.1 check if that record is within billing month
