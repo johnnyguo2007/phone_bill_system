@@ -56,11 +56,9 @@ class CallRecords:
         with open(filename) as f:
             reader = csv.reader(f)
             for row in reader:
-                print(row[2])
-                obj_cr = CallRecord()
-                # Todo: Convert the datetimes to integers
+                tp = tuple(row)
+                obj_cr = CallRecord(*tp) #using wilecard to unpack the tuple
                 self.add_record(obj_cr)
-
 # import csv
 #
 # call_records = CallRecords()
