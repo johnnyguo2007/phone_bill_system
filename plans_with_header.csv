@@ -1,0 +1,5 @@
+plan_name,rate_domestic,rate_inter,allowance_domestic,allowance_inter,fix_price
+unlimted,0,0,unlimted,unlimted,1000
+basic,0.01,0.05,1000,unlimted,100
+plus,0.01,0.03,3000,unlimted,100
+ecomany,0.01,0.05,1000,unlimted,70
