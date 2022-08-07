@@ -54,19 +54,20 @@ class CallingPlans:
     def __repr__(self):
         str_plans = ''
         for plan in self._plan_dict.values():
+            # todo: need more complete repr
             str_plans += f'\n{repr(plan)}'
         return str_plans
 
-# def test_load_plans_from_file(file_path:str):
-#     obj_call_plans = CallingPlans()
-#     with open(file_path) as f:
-#         reader = csv.reader(f)
-#         for row in reader:
-#             tp = tuple(row)
-#             obj_pn = CallingPlan(*tp)
-#             obj_call_plans.add_plan(obj_pn)
-#         str_pns = repr(obj_call_plans)
-#         print(str_pns)
-#
-# path = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\plans.csv'
-# test_load_plans_from_file(path)
+def test_load_plans_from_file(file_path:str):
+    obj_call_plans = CallingPlans()
+    with open(file_path) as f:
+        reader = csv.reader(f)
+        for row in reader:
+            tp = tuple(row)
+            obj_pn = CallingPlan(*tp)
+            obj_call_plans.add_plan(obj_pn)
+        str_pns = repr(obj_call_plans)
+        print(str_pns)
+
+path = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\plans.csv'
+test_load_plans_from_file(path)

@@ -2,20 +2,22 @@ from calling_plan import CallingPlan
 import csv
 from typing import List, Dict, TypedDict
 
+
 class Customer:
     def __init__(self, name,
                  caller_number,
-                 calling_plan: CallingPlan):
+                 calling_plan_name: str):
         self.name = name
         self.caller_number = caller_number
-        self.calling_plan = calling_plan
+        self.calling_plan_name = calling_plan_name
 
-    def get_calling_plan(self) -> CallingPlan:
-        return self.calling_plan
+    def get_calling_plan_name(self) -> str:
+        return self.calling_plan_name
 
     def __repr__(self):
-        str_customer = f'{self.name}\t{self.caller_number}\t{self.calling_plan}'
+        str_customer = f'{self.name}\t{self.caller_number}\t{self.calling_plan_name}'
         return str_customer
+
 
 #
 #
@@ -45,7 +47,7 @@ class Customers:
         with open(file_path) as f:
             reader = csv.reader(f)
             for row in reader:
-				#todo: create a function that skips lines starting with #
+                # todo: create a function that skips lines starting with #
                 tp = tuple(row)
                 obj_cm = Customer(*tp)
                 self.add_customer(obj_cm)
@@ -55,7 +57,6 @@ class Customers:
         for customer in self._customer_dict.values():
             str_customers += f'\n{repr(customer)}'
         return str_customers
-
 
 # def test_load_customers_from_file(file_path: str):
 #     obj_customers = Customers()
