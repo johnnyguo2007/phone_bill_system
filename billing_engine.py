@@ -1,6 +1,6 @@
 from call_record import CallRecords
-from calling_plan import CallingPlan, CallingPlans
-from customer import Customers, Customer
+from calling_plan import CallingPlans
+from customer import Customers
 import util
 
 
@@ -14,6 +14,12 @@ class BillingEngine:
 
     def generate_one_bill(self, customer_name: str,
                           billing_year_month: int):
+        """
+        generate one bill for a given customer for a given month within the correct year
+        :param customer_name: str
+        :param billing_year_month: int
+        :return: total bill
+        """
         # 0. load all of the customers
         obj_customers = Customers()
         # 1. from customer name create a customer object
@@ -64,10 +70,14 @@ class BillingEngine:
               f'Your total bill is {total_bill_cost}')
 
 
-path_customer = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\Customers.csv'
-path_call_records = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\call_records.csv'
-path_plan = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\plans.csv'
-obj_billing_engine = BillingEngine(path_customer, path_call_records, path_plan)
+# path_customer = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\Customers.csv'
+# path_call_records = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\call_records.csv'
+# path_plan = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\plans.csv'
+path_customer_mac = '/Users/johnnyguo/PycharmProjects/phone_bill_system/Customers.csv'
+path_call_records_mac = '/Users/johnnyguo/PycharmProjects/phone_bill_system/call_records.csv'
+path_plan_mac = '/Users/johnnyguo/PycharmProjects/phone_bill_system/plans.csv'
+#obj_billing_engine = BillingEngine(path_customer, path_call_records, path_plan)
+obj_billing_engine = BillingEngine(path_customer_mac, path_call_records_mac, path_plan_mac)
 cust_name = 'Novak'
 yyyymm = 202105
 obj_billing_engine.generate_one_bill(cust_name, yyyymm)

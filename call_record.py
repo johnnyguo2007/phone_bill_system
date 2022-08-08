@@ -14,17 +14,25 @@ class CallRecord:
 
 
     def __post_init__(self):
+        """
+        convert objects to appropriate datatypes
+        :return: converted objects
+        """
         if not isinstance(self.date_time, datetime):
             if isinstance(self.date_time, str):
                 self.date_time = datetime.strptime(self.date_time, '%m/%d/%Y %H:%M')
-                print('hello')
+                #print('hello')
         if not isinstance(self.duration_seconds, int):
             if isinstance(self.duration_seconds, str):
                 self.duration_seconds = int(self.duration_seconds)
-                print('')
+                #print('')
 
 
     def get_billing_year_month(self) -> int:
+        """
+        converts the month and year to appropriate format
+        :return: formated month and year as an int
+        """
         year: int = self.date_time.year
         month: int = self.date_time.month
         yyyymm = year * 100 + month
@@ -48,6 +56,10 @@ class CallRecords:
         self._data = []
 
     def get_call_records(self) -> list[CallRecord]:
+        """
+        get call records and store it into a list
+        :return: list of records
+        """
         return self._data
 
     def __repr__(self):
@@ -57,6 +69,11 @@ class CallRecords:
         return str_records
 
     def add_record(self, phone_record: CallRecord):
+        """
+        add a record to the internal collection (list)
+        :param phone_record: one singular record
+        :return:
+        """
         self._data.append(phone_record)
 
     def total_duration(self, call_type, duration_seconds):
@@ -68,6 +85,11 @@ class CallRecords:
         pass
 
     def load_call_records_from_file(self, filename: str):
+        """
+        load data from records file to populate the internal collection
+        :param filename: file path of plans file in string format
+        :return:
+        """
         with open(filename) as f:
             reader = csv.reader(f)
             for row in reader:
