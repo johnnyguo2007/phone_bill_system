@@ -3,29 +3,34 @@ from typing import Dict
 
 
 class CallingPlan:
-    def __init__(self, plan_name='Basic', rate_domestic=0.01, rate_inter=0.05, allowance_domestic=1000,
-                 allowance_inter=0, fix_price=10):
+    def __init__(self, plan_name: str ='Basic',
+                 rate_domestic: float =0.01,
+                 rate_inter: float =0.05,
+                 allowance_domestic: int =1000,
+                 allowance_inter: int =0,
+                 fix_price: float =10
+                 ):
         self.plan_name = plan_name
-        self.rate_inter = rate_inter
-        self.rate_domestic = rate_domestic
-        self.allowance_inter = allowance_inter
-        self.fix_price = fix_price
-        self.allowance_domestic = allowance_domestic
+        self.rate_inter = float(rate_inter)
+        self.rate_domestic = float(rate_domestic)
+        self.allowance_inter = int(allowance_inter)
+        self.fix_price = float(fix_price)
+        self.allowance_domestic = int(allowance_domestic)
 
 
-    def get_local_allowance(self):
+    def get_local_allowance(self) -> int:
         return self.allowance_domestic
 
-    def get_international_allowance(self):
+    def get_international_allowance(self) -> int:
         return self.allowance_inter
 
-    def get_fixed_cost(self):
+    def get_fixed_cost(self) -> int:
         return self.fix_price
 
-    def get_local_rate(self):
+    def get_local_rate(self) -> float:
         return self.rate_domestic
 
-    def get_international_rate(self):
+    def get_international_rate(self) -> float:
         return self.rate_inter
 
     def __repr__(self):

@@ -1,5 +1,5 @@
 import dataclasses
-import datetime
+from datetime import datetime
 from dataclasses import dataclass
 import csv
 
@@ -10,6 +10,19 @@ class CallRecord:
     caller_number: int
     destination_number: int
     duration_seconds: int
+
+
+
+    def __post_init__(self):
+        if not isinstance(self.date_time, datetime):
+            if isinstance(self.date_time, str):
+                self.date_time = datetime.strptime(self.date_time, '%m/%d/%Y %H:%M')
+                print('hello')
+        if not isinstance(self.duration_seconds, int):
+            if isinstance(self.duration_seconds, str):
+                self.duration_seconds = int(self.duration_seconds)
+                print('')
+
 
     def get_billing_year_month(self) -> int:
         year: int = self.date_time.year

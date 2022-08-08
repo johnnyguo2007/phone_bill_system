@@ -32,15 +32,19 @@ class BillingEngine:
         # 3.1 check if that record is within billing month
         # 3.2 and if the record belongs to the customer or not
         # 3.3 keep two totals of minutes. One local total and one international total.
-        international_total_minutes = 0
-        local_total_minutes = 0
+        international_total_minutes: int = 0
+        local_total_minutes: int = 0
         for record in obj_call_records.get_call_records():
             if record.get_billing_year_month() == billing_year_month \
                     and record.caller_number == obj_cust.caller_number:
-                if util.is_international(record):
+                if util.is_international(record.destination_number):
                     international_total_minutes += record.duration_seconds / 60
+                    print(record)
+                    print(f'international_total_minutes: {international_total_minutes} ')
                 else:
                     local_total_minutes += record.duration_seconds / 60
+                    print(record)
+                    print(f'local total minutes: {international_total_minutes}')
 
         # 4. imply calling_plan and subtract allowance for both local and internatinal and mutiply rates respectivly
         local_total_minutes -= obj_call_plan.get_local_allowance()
@@ -53,10 +57,10 @@ class BillingEngine:
 
         # All functions above implemented
         # 5. generate bill
-        print(f'Bill for {customer_name}'
-              f'Date: {billing_year_month} '
-              f'Total local minutes: {local_total_minutes}'
-              f'Total international minutes: {international_total_minutes}'
+        print(f'Bill for {customer_name}\n'
+              f'Date: {billing_year_month}\n '
+              f'Total local minutes: {local_total_minutes}\n'
+              f'Total international minutes: {international_total_minutes}\n'
               f'Your total bill is {total_bill_cost}')
 
 
@@ -65,5 +69,5 @@ path_call_records = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\call_
 path_plan = 'C:\\Users\\patri\\PycharmProjects\\phone_bill_system\\plans.csv'
 obj_billing_engine = BillingEngine(path_customer, path_call_records, path_plan)
 cust_name = 'Novak'
-yyyymm =202105
+yyyymm = 202105
 obj_billing_engine.generate_one_bill(cust_name, yyyymm)
